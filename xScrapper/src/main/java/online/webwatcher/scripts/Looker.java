@@ -1,14 +1,23 @@
 package online.webwatcher.scripts;
 
+
+
+import org.springframework.web.reactive.function.client.WebClient;
+
 import online.webwatcher.model.ThreadData;
+import reactor.core.publisher.Mono;
 
 public class Looker extends Thread {
 	
 	private ThreadData data;
-
+	private WebClient client;
+	
 	public Looker(ThreadData data) {
 		super();
 		this.data = data;
+		
+		this.client = WebClient.create(data.getId().getUrl());
+		
 	}
 	
 	public void run() {
@@ -31,8 +40,7 @@ public class Looker extends Thread {
 	}
 
 	private boolean look() {
-		return false;
-		// TODO Auto-generated method stub
+		Mono<String> mono = client.get().retrieve().bodyToMono(String.class).;
 		
 	}
 	
