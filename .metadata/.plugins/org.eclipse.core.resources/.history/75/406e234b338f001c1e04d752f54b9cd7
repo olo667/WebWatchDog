@@ -1,0 +1,65 @@
+package online.webwatcher.start;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the threads database table.
+ * 
+ */
+@Entity
+@Table(name="threads")
+@NamedQuery(name="Thread.findAll", query="SELECT t FROM Thread t")
+public class Thread implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ThreadPK id;
+
+	private Integer delay;
+
+	@Column(name="refreshes_left")
+	private Integer refreshesLeft;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="user_mail")
+	private User user;
+
+	public Thread() {
+	}
+
+	public ThreadPK getId() {
+		return this.id;
+	}
+
+	public void setId(ThreadPK id) {
+		this.id = id;
+	}
+
+	public Integer getDelay() {
+		return this.delay;
+	}
+
+	public void setDelay(Integer delay) {
+		this.delay = delay;
+	}
+
+	public Integer getRefreshesLeft() {
+		return this.refreshesLeft;
+	}
+
+	public void setRefreshesLeft(Integer refreshesLeft) {
+		this.refreshesLeft = refreshesLeft;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+}
