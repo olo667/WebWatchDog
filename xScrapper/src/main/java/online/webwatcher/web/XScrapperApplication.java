@@ -1,4 +1,4 @@
-package online.webwatcher.start;
+package online.webwatcher.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

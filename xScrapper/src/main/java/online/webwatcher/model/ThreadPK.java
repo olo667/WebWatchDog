@@ -1,4 +1,4 @@
-package online.webwatcher.dao.model;
+package online.webwatcher.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

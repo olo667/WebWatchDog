@@ -1,4 +1,4 @@
-package online.webwatcher.dao.model;
+package online.webwatcher.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -26,7 +26,7 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to Thread
 	@OneToMany(mappedBy="user")
-	private List<Thread> threads;
+	private List<ThreadData> threads;
 
 	public User() {
 	}
@@ -55,22 +55,22 @@ public class User implements Serializable {
 		this.passwordHash = passwordHash;
 	}
 
-	public List<Thread> getThreads() {
+	public List<ThreadData> getThreads() {
 		return this.threads;
 	}
 
-	public void setThreads(List<Thread> threads) {
+	public void setThreads(List<ThreadData> threads) {
 		this.threads = threads;
 	}
 
-	public Thread addThread(Thread thread) {
+	public ThreadData addThread(ThreadData thread) {
 		getThreads().add(thread);
 		thread.setUser(this);
 
 		return thread;
 	}
 
-	public Thread removeThread(Thread thread) {
+	public ThreadData removeThread(ThreadData thread) {
 		getThreads().remove(thread);
 		thread.setUser(null);
 
